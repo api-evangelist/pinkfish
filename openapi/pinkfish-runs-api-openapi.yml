@@ -1,0 +1,144 @@
+openapi: 3.0.1
+info:
+  title: AI Workflow Runs API
+  description: API for triggering and managing AI-powered Pinkfish workflows. Trigger endpoints execute published Pinkfish workflows (automations) synchronously or asynchronously, and polling endpoints retrieve run status and results.
+  version: 1.0.0
+  contact:
+    name: Pinkfish
+    url: https://docs.pinkfish.ai/api-reference/introduction
+servers:
+- url: https://triggers.app.pinkfish.ai
+security:
+- apiKeyAuth: []
+tags:
+- name: Runs
+  description: Poll run status and retrieve results
+paths:
+  /ext/webhook/{apiKey}/runs/{automationId}/{runId}/status:
+    get:
+      tags:
+      - Runs
+      operationId: getRunStatus
+      summary: Get workflow run status
+      description: Returns the current status of a workflow run. Poll every 2-5 seconds until a terminal status (COMPLETE, FAILED, TIMEOUT). PAUSED is not terminal — keep polling. Modeled from the documented Async Polling guide.
+      parameters:
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: automationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: runId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Current run status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunStatus'
+  /ext/webhook/{apiKey}/runs/{automationId}/{runId}/results:
+    get:
+      tags:
+      - Runs
+      operationId: getRunResults
+      summary: Get workflow run results
+      description: Retrieves the full results of a completed workflow run, including per-step results and signed resultUrls. Modeled from the documented Async Polling guide.
+      parameters:
+      - name: apiKey
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: automationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: runId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Full workflow run results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunResult'
+components:
+  schemas:
+    RunResult:
+      type: object
+      nullable: true
+      properties:
+        automationId:
+          type: string
+        automationVersion:
+          type: integer
+        automationName:
+          type: string
+        id:
+          type: string
+          description: The run ID
+        type:
+          type: string
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              stepIndex:
+                type: integer
+              stepVersion:
+                type: integer
+              result:
+                type: object
+              resultUrls:
+                type: object
+              exitCode:
+                type: integer
+              duration:
+                type: integer
+        started:
+          type: string
+          format: date-time
+        status:
+          type: string
+    RunStatus:
+      type: object
+      properties:
+        automationId:
+          type: string
+        runId:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - RUNNING
+          - PAUSED
+          - COMPLETE
+          - FAILED
+          - TIMEOUT
+        stepStatus:
+          type: object
+          additionalProperties:
+            type: string
+        stepInfo:
+          type: object
+          additionalProperties:
+            type: object
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
