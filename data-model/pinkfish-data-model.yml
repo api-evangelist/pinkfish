@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pinkfish-triggers-openapi.yml
+entities:
+  - name: Workflow
+    aka: Automation
+    id_field: automationId
+    description: A series of steps (an automation) that performs a task; versioned and published as releases.
+    fields: [automationId, automationName, automationVersion]
+  - name: Trigger
+    id_field: triggerId
+    description: A mechanism to initiate a workflow via API/webhook/schedule/email/application/interface.
+    fields: [triggerId]
+  - name: Run
+    id_field: runId
+    aka: id
+    description: An instance of a workflow being executed.
+    fields: [runId, status, started, startedBy, type, stepMap]
+  - name: StepResult
+    description: The output of a single workflow step within a run.
+    fields: [stepIndex, stepVersion, result, resultUrls, exitCode, duration]
+relationships:
+  - from: Trigger
+    to: Workflow
+    type: belongs_to
+    via: automationId
+  - from: Run
+    to: Workflow
+    type: belongs_to
+    via: automationId
+  - from: Run
+    to: Trigger
+    type: belongs_to
+    via: triggerId
+  - from: Run
+    to: StepResult
+    type: has_many
+    via: results

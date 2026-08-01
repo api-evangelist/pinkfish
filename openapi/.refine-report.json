@@ -1,0 +1,16 @@
+{
+  "provider": "pinkfish",
+  "sources": [
+    "pinkfish-runs-api-openapi.yml",
+    "pinkfish-triggers-api-openapi.yml"
+  ],
+  "outputs": [
+    "pinkfish-runs-api-openapi.yml",
+    "pinkfish-triggers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,67 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pinkfish.ai/api-reference/introduction
+api: openapi/pinkfish-triggers-openapi.yml
+summary: >-
+  Cross-cutting request/response semantics for the Pinkfish Triggers API,
+  captured from the published API reference and Async Polling guide.
+authentication:
+  style: api-key
+  header: X-API-KEY
+  webhook_variant: API key embedded in the URL path (/ext/webhook/{apiKey}/...)
+  detail: authentication/pinkfish-authentication.yml
+execution_model:
+  modes:
+    - name: asynchronous
+      default: true
+      behavior: >-
+        Fire-and-forget. Returns immediately with a null body; run id is in the
+        X-Pf-Run-Id response header and automation id in X-Pf-Automation-Id.
+      selector: "x-api-wait: false (or header omitted)"
+    - name: synchronous
+      behavior: >-
+        Waits up to 60 seconds for completion. Returns full results in the body
+        if it finishes; otherwise returns 202 Accepted with a Retry-After header
+        and a poll handle (runId, statusUrl, resultsUrl).
+      selector: "x-api-wait: true"
+run_tracing:
+  run_id_header: X-Pf-Run-Id
+  automation_id_header: X-Pf-Automation-Id
+  aws_request_id_header: x-amzn-RequestId
+  trace_header: X-Amzn-Trace-Id
+polling:
+  note: >-
+    Polling endpoints always use the webhook-style URL format
+    (/ext/webhook/{apiKey}/...) even when the run was triggered via the
+    X-API-KEY header endpoint.
+  status_endpoint: /ext/webhook/{apiKey}/runs/{automationId}/{runId}/status
+  results_endpoint: /ext/webhook/{apiKey}/runs/{automationId}/{runId}/results
+  status_values: [PENDING, RUNNING, PAUSED, COMPLETE, FAILED, TIMEOUT]
+  terminal_statuses: [COMPLETE, FAILED, TIMEOUT]
+  non_terminal_note: "PAUSED (durable wait/approval) is not terminal — keep polling."
+  recommended_interval_seconds: "2-5"
+content_types:
+  api_trigger: [application/json, application/x-www-form-urlencoded, multipart/form-data]
+  webhook_trigger: [application/json, application/x-www-form-urlencoded]
+  note: File attachments (multipart) are supported on API triggers only, not webhook triggers.
+attachments:
+  supported_on: api-trigger
+  limits:
+    max_file_size: 25MB
+    max_total_size: 100MB
+    max_files: 20
+  blocked: Executable files and scripts are blocked.
+  signed_url_ttl_hours: 24
+idempotency:
+  supported: false
+  note: No idempotency-key contract is documented for the Triggers API.
+pagination:
+  supported: false
+  note: The Triggers API is a run-execution surface; no list pagination is documented.
+error_envelope:
+  shape: '{ "error": string, "message": string }'
+  detail: errors/pinkfish-problem-types.yml
+versioning:
+  scheme: openapi info.version
+  current: 1.0.0
+  detail: lifecycle/pinkfish-lifecycle.yml

@@ -1,0 +1,90 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.pinkfish.ai/api-reference/mcp-servers/embedded/pinkfish-sidekick
+summary: >-
+  Pinkfish publishes an official embedded MCP server, "Pinkfish Sidekick"
+  (workflow building), that exposes the platform's workflow create/update/run/
+  publish/trigger surface as MCP tools. Beyond Sidekick, Pinkfish hosts a large
+  library of MCP servers (900+ documented application servers, part of the
+  1,500+ tool catalog) that wrap 500+ enterprise integrations; those are
+  provisioned per connection inside the platform rather than as a single public
+  endpoint.
+servers:
+  - name: pinkfish-sidekick
+    title: Pinkfish Sidekick (workflow building)
+    type: embedded
+    transport: http
+    server_path: /pinkfish-sidekick
+    pcid_required: false
+    docs: https://docs.pinkfish.ai/api-reference/mcp-servers/embedded/pinkfish-sidekick
+    description: >-
+      Visual workflow builder, execution, triggers, and sub-workflow invocation
+      exposed as MCP tools. Handles workflow lifecycle (create/update/publish/
+      delete/duplicate/promote), execution and polling (run/run_status/results),
+      trigger management (api/webhook/schedule/email/application/interface), and
+      capability/tool discovery.
+    tools:
+      - name: workflow_create
+        description: Create a new workflow automation; returns automationId and starterCode.
+      - name: workflow_update
+        description: Update workflow code using code-edit format.
+      - name: workflow_bind_resources
+        description: Apply resource bindings for an existing workflow.
+      - name: workflow_publish
+        description: Publish a new release of a workflow (same as the editor Publish button).
+      - name: workflow_share
+        description: Share or unshare a workflow (default scope org).
+      - name: workflow_delete
+        description: Permanently delete a workflow by ID.
+      - name: workflow_duplicate
+        description: Duplicate (clone) a workflow within the current org.
+      - name: workflow_promote
+        description: Promote a workflow to the next stage in its promotion path.
+      - name: workflow_promotion_paths_list
+        description: List all promotion paths visible to the current organization.
+      - name: workflow_promotion_paths_get
+        description: Get a single promotion path by ID, including its stages.
+      - name: workflow_read
+        description: Get workflow structure and optionally focused node details.
+      - name: workflow_run
+        description: Execute a workflow and return results (async execution handled automatically).
+      - name: workflow_pin
+        description: Pin or unpin node outputs to reuse across runs.
+      - name: workflow_run_status
+        description: Check status of a run and wait for completion.
+      - name: mcp_discover
+        description: Find MCP servers and tools for any task.
+      - name: capabilities_discover
+        description: Discover available tools, agent skills, connections, and resources for a task.
+      - name: capability_details
+        description: Get full details (input schemas) for selected capabilities.
+      - name: workflow_results
+        description: Deep inspection of workflow run output files.
+      - name: workflow_release_diff
+        description: Compare current draft code against the latest published release.
+      - name: workflow_trigger_schedule
+        description: Create/manage/list cron schedule triggers.
+      - name: workflow_trigger_api
+        description: Create/manage/list API (webhook) triggers.
+      - name: workflow_trigger_email
+        description: Create/manage/list email triggers.
+      - name: workflow_trigger_application
+        description: Create/manage/list application triggers (GitHub, Shopify, etc.).
+      - name: workflow_trigger_interface
+        description: Create/manage/list interface triggers (user-facing forms).
+      - name: workflow_trigger_replace
+        description: Replace an existing trigger in one call.
+      - name: workflow_trigger_list_all
+        description: List triggers across all trigger types.
+      - name: workflow_trigger_cleanup
+        description: Delete unused triggers for an automation.
+      - name: workflow_agents
+        description: Create/read/update/list/invoke agents for use in workflows.
+      - name: workflow_invoke
+        description: Invoke another workflow (sub-workflow) via its webhook trigger URL.
+      - name: workflow_list
+        description: List all workflows accessible to the user.
+notes: >-
+  The Triggers API workflow_run / workflow_run_status / workflow_results tools
+  mirror the REST trigger + async-polling flow in openapi/pinkfish-triggers-openapi.yml.

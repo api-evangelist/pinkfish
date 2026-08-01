@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pinkfish-triggers-openapi.yml
+format: custom-json
+envelope:
+  schema: Error
+  shape: '{ "error": string, "message": string }'
+  content_type: application/json
+  note: >-
+    Pinkfish Triggers API returns a simple JSON error envelope (error + message),
+    not RFC 9457 application/problem+json.
+problems:
+  - status: 400
+    title: Bad request
+    schema: Error
+    source_operation: openapi/pinkfish-triggers-openapi.yml#triggerWorkflow
+  - status: 401
+    title: Unauthorized
+    schema: Error
+    remediation: >-
+      Provide a valid API key via the X-API-KEY header (API trigger) or embedded
+      in the webhook URL path. Generate keys in the platform Library section or
+      during trigger setup.
+    source_operation: openapi/pinkfish-triggers-openapi.yml#triggerWorkflow
+run_status_errors:
+  note: >-
+    Beyond HTTP errors, a run can end in a non-success terminal status reported
+    by the status/results endpoints.
+  statuses:
+    - status: FAILED
+      meaning: Workflow failed with an error.
+    - status: TIMEOUT
+      meaning: Workflow exceeded its execution time limit.

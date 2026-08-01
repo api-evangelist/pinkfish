@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+hosts:
+  - host: https://www.pinkfish.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+  - host: https://app.pinkfish.ai
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        valid: false
+        note: >-
+          Returns the SPA index.html (app shell), not a valid OIDC discovery
+          document — the app serves a catch-all 200 for unknown paths.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        valid: false
+        note: Returns the SPA index.html, not an RFC 8414 metadata document.
+  - host: https://triggers.app.pinkfish.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 403
+result: >-
+  No valid /.well-known discovery documents were found. The Triggers API uses
+  static API-key authentication (X-API-KEY), not OAuth/OIDC, so OAuth/OIDC
+  discovery metadata is not expected.

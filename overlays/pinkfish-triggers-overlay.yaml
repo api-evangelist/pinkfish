@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Pinkfish Triggers API
+  version: 1.0.0
+extends: openapi/pinkfish-triggers-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: pinkfish
+      x-apievangelist-enriched: '2026-07-20'
+      x-execution-models: [asynchronous, synchronous]
+      x-run-tracing-headers: [X-Pf-Run-Id, X-Pf-Automation-Id]
+  - target: $.paths['/ext/triggers/{triggerId}'].post
+    update:
+      x-mcp-equivalent: pinkfish-sidekick#workflow_run
+  - target: $.components.securitySchemes.apiKeyAuth
+    update:
+      x-key-provisioning: >-
+        Generate API keys in the platform Library section or during trigger
+        setup. The webhook trigger variant embeds the key in the URL path.

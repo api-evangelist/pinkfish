@@ -1,0 +1,15 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pinkfish-triggers-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-API-KEY
+  sources:
+  - openapi/pinkfish-triggers-openapi.yml

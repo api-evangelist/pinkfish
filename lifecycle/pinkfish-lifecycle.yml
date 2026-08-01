@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.pinkfish.ai/api-reference/introduction
+versioning:
+  scheme: openapi-info-version
+  current: '1.0.0'
+  api_title: AI Workflow API
+  docs: https://docs.pinkfish.ai/api-reference/introduction
+  note: >-
+    Workflows themselves are versioned (automationVersion) and published as
+    releases; the platform editor exposes "Releases & Version History".
+changelog:
+  url: https://www.pinkfish.ai/changelog
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/sunset-header policy is published for the Triggers API.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []

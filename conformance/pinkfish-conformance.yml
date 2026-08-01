@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/pinkfish-triggers-openapi.yml
+standards:
+  - id: openapi-3.0
+    conforms: true
+    evidence: Provider publishes OpenAPI 3.0.1 documents for the trigger endpoints.
+  - id: api-key-auth
+    conforms: true
+    evidence: securitySchemes apiKeyAuth (X-API-KEY header) applied API-wide.
+  - id: oauth2
+    conforms: false
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom { error, message } JSON envelope, not application/problem+json.
+  - id: rfc8594-sunset
+    conforms: false
+  - id: webhooks
+    conforms: true
+    evidence: >-
+      Documents inbound webhook triggers and application triggers (GitHub,
+      Shopify, Slack, Discord, Linear, Zoom) that start workflows on events.
+  - id: mcp
+    conforms: true
+    evidence: >-
+      Official embedded MCP server (Pinkfish Sidekick) plus a hosted MCP tool
+      library wrapping 500+ integrations.

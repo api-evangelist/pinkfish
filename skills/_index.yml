@@ -1,0 +1,7 @@
+generated: '2026-07-20'
+method: generated
+skills:
+  - file: pinkfish-trigger-and-poll.md
+    name: Trigger a Pinkfish workflow and get results
+    api: openapi/pinkfish-triggers-openapi.yml
+    operations: [triggerWorkflow, getRunStatus, getRunResults]

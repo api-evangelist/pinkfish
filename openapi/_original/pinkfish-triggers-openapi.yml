@@ -1,0 +1,359 @@
+# generated: '2026-07-20'
+# method: searched
+# source: https://docs.pinkfish.ai/api-reference/introduction (provider-published OpenAPI blocks in the Triggers API reference; polling GET operations modeled from the documented Async Polling guide)
+openapi: 3.0.1
+info:
+  title: AI Workflow API
+  description: >-
+    API for triggering and managing AI-powered Pinkfish workflows. Trigger
+    endpoints execute published Pinkfish workflows (automations) synchronously or
+    asynchronously, and polling endpoints retrieve run status and results.
+  version: 1.0.0
+  contact:
+    name: Pinkfish
+    url: https://docs.pinkfish.ai/api-reference/introduction
+servers:
+  - url: https://triggers.app.pinkfish.ai
+security:
+  - apiKeyAuth: []
+tags:
+  - name: Triggers
+    description: Execute published workflows via API and webhook triggers
+  - name: Runs
+    description: Poll run status and retrieve results
+paths:
+  /ext/triggers/{triggerId}:
+    post:
+      tags:
+        - Triggers
+      operationId: triggerWorkflow
+      summary: Trigger a workflow
+      description: >-
+        Executes a workflow using its associated trigger. Asynchronous by
+        default (returns null body, run id in X-Pf-Run-Id header). Set
+        `x-api-wait: true` for synchronous execution (waits up to 60 seconds).
+      parameters:
+        - name: triggerId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the trigger
+        - name: myvar
+          in: query
+          schema:
+            type: string
+          description: Optional query parameter for the trigger
+        - name: x-api-wait
+          in: header
+          required: false
+          schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+            default: 'false'
+          description: >-
+            Set to `true` for synchronous execution (waits up to 60 seconds for
+            results). Set to `false` or omit for asynchronous (fire-and-forget)
+            execution.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              user_request: what is the capital of France
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+            example:
+              TESTKEY: TESTVAR
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              additionalProperties: true
+      responses:
+        '200':
+          description: >-
+            Workflow triggered successfully. Async mode: body is null (use
+            X-Pf-Run-Id / X-Pf-Automation-Id headers). Sync mode: body contains
+            full workflow results if completed within 60 seconds.
+          headers:
+            X-Pf-Run-Id:
+              schema:
+                type: string
+              description: Unique identifier for this workflow run
+            X-Pf-Automation-Id:
+              schema:
+                type: string
+              description: The automation/workflow ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunResult'
+        '202':
+          description: >-
+            Accepted. Sync request whose workflow was still running when the
+            60-second wait window closed. Poll statusUrl/resultsUrl.
+          headers:
+            Retry-After:
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunHandle'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /ext/webhook/{apiKey}/triggers/{triggerId}:
+    post:
+      tags:
+        - Triggers
+      operationId: triggerWorkflowViaWebhook
+      summary: Trigger a workflow via webhook
+      description: >-
+        Executes a workflow using a webhook URL with the API key embedded in the
+        path. Designed for third-party services that cannot set custom headers
+        (Slack, Discord, Linear, Zoom, etc.). JSON and form-encoded data only;
+        file attachments are not supported.
+      parameters:
+        - name: apiKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The API key, embedded in the URL path for authentication
+        - name: triggerId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique identifier of the trigger
+        - name: x-api-wait
+          in: header
+          required: false
+          schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+            default: 'false'
+          description: Set to `true` for synchronous execution.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+            example:
+              event: issue_created
+              issue_id: '12345'
+              title: New feature request
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              additionalProperties:
+                type: string
+      responses:
+        '200':
+          description: Workflow triggered successfully.
+          headers:
+            X-Pf-Run-Id:
+              schema:
+                type: string
+            X-Pf-Automation-Id:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunResult'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /ext/webhook/{apiKey}/runs/{automationId}/{runId}/status:
+    get:
+      tags:
+        - Runs
+      operationId: getRunStatus
+      summary: Get workflow run status
+      description: >-
+        Returns the current status of a workflow run. Poll every 2-5 seconds
+        until a terminal status (COMPLETE, FAILED, TIMEOUT). PAUSED is not
+        terminal — keep polling. Modeled from the documented Async Polling guide.
+      parameters:
+        - name: apiKey
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: automationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: runId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Current run status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunStatus'
+  /ext/webhook/{apiKey}/runs/{automationId}/{runId}/results:
+    get:
+      tags:
+        - Runs
+      operationId: getRunResults
+      summary: Get workflow run results
+      description: >-
+        Retrieves the full results of a completed workflow run, including
+        per-step results and signed resultUrls. Modeled from the documented
+        Async Polling guide.
+      parameters:
+        - name: apiKey
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: automationId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: runId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Full workflow run results.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunResult'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+        - error
+        - message
+    RunHandle:
+      type: object
+      properties:
+        runId:
+          type: string
+        automationId:
+          type: string
+        status:
+          type: string
+        statusUrl:
+          type: string
+        resultsUrl:
+          type: string
+        retryAfterSeconds:
+          type: integer
+    RunStatus:
+      type: object
+      properties:
+        automationId:
+          type: string
+        runId:
+          type: string
+        status:
+          type: string
+          enum:
+            - PENDING
+            - RUNNING
+            - PAUSED
+            - COMPLETE
+            - FAILED
+            - TIMEOUT
+        stepStatus:
+          type: object
+          additionalProperties:
+            type: string
+        stepInfo:
+          type: object
+          additionalProperties:
+            type: object
+    RunResult:
+      type: object
+      nullable: true
+      properties:
+        automationId:
+          type: string
+        automationVersion:
+          type: integer
+        automationName:
+          type: string
+        id:
+          type: string
+          description: The run ID
+        type:
+          type: string
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              stepIndex:
+                type: integer
+              stepVersion:
+                type: integer
+              result:
+                type: object
+              resultUrls:
+                type: object
+              exitCode:
+                type: integer
+              duration:
+                type: integer
+        started:
+          type: string
+          format: date-time
+        status:
+          type: string

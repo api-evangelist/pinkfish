@@ -1,8 +1,31 @@
 aid: pinkfish
 name: Pinkfish
-description: 'Pinkfish is a company surfaced as a portfolio company of norwest-venture-partners and added
-  to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Pinkfish is an enterprise agentic AI and business orchestration platform that
+  runs multi-step workflows across an organization's stack, combining AI agents
+  with real system integrations, permissions, and auditability for critical
+  operations. The platform pairs a natural-language "Coworker" and visual
+  agentic workflow editor with domain-specific Agents, a Guardian monitoring and
+  self-healing layer, and a library of 1,500+ ready-to-deploy MCP tools spanning
+  500+ enterprise integrations (Salesforce, Slack, Stripe, Zendesk, Jira, and
+  more). Published workflows are exposed programmatically through the Triggers
+  API (an API-key authenticated HTTP surface supporting synchronous and
+  asynchronous execution, webhook triggers, and run polling) and through the
+  embedded Pinkfish Sidekick MCP server. Pinkfish was surfaced as a portfolio
+  company of Norwest Venture Partners and was acquired by Genesys.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.pinkfish.ai/favicon.png
 url: https://raw.githubusercontent.com/api-evangelist/pinkfish/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,17 +34,106 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-- Unknown
-apis: []
+- Artificial Intelligence
+- AI Agents
+- Agentic Workflows
+- Automation
+- Orchestration
+- Model Context Protocol
+- Integrations
+- Enterprise
+- No-Code
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: pinkfish:pinkfish-runs-api
+  name: Pinkfish Runs API
+  description: Poll run status and retrieve results
+  humanURL: https://docs.pinkfish.ai/api-reference/introduction
+  baseURL: https://triggers.app.pinkfish.ai
+  tags:
+  - Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/pinkfish-runs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pinkfish.ai/api-reference/introduction
+  - type: Authentication
+    url: authentication/pinkfish-authentication.yml
+- aid: pinkfish:pinkfish-triggers-api
+  name: Pinkfish Triggers API
+  description: Execute published workflows via API and webhook triggers
+  humanURL: https://docs.pinkfish.ai/api-reference/introduction
+  baseURL: https://triggers.app.pinkfish.ai
+  tags:
+  - Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/pinkfish-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pinkfish.ai/api-reference/introduction
+  - type: Authentication
+    url: authentication/pinkfish-authentication.yml
 common:
 - type: Website
   url: https://pinkfish.ai
+- type: DeveloperPortal
+  url: https://docs.pinkfish.ai
+- type: Documentation
+  url: https://docs.pinkfish.ai
+- type: APIReference
+  url: https://docs.pinkfish.ai/api-reference/introduction
+- type: Blog
+  url: https://www.pinkfish.ai/blog
+- type: Pricing
+  url: https://www.pinkfish.ai/pricing
+- type: SignUp
+  url: https://app.pinkfish.ai
+- type: Login
+  url: https://app.pinkfish.ai
+- type: TermsOfService
+  url: https://www.pinkfish.ai/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.pinkfish.ai/privacy-policy
+- type: ChangeLog
+  url: https://www.pinkfish.ai/changelog
+- type: GitHubOrganization
+  url: https://github.com/pinkfish-ai
+- type: Integrations
+  url: https://www.pinkfish.ai/integrations
+- type: MCPServer
+  url: mcp/pinkfish-mcp.yml
+- type: LLMsTxt
+  url: llms/pinkfish-llms.txt
+- type: Authentication
+  url: authentication/pinkfish-authentication.yml
+- type: Conventions
+  url: conventions/pinkfish-conventions.yml
+- type: ErrorCatalog
+  url: errors/pinkfish-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/pinkfish-lifecycle.yml
+- type: Conformance
+  url: conformance/pinkfish-conformance.yml
+- type: DataModel
+  url: data-model/pinkfish-data-model.yml
+- type: DomainSecurity
+  url: security/pinkfish-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/pinkfish-agentic-access.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Webhooks
+  url: https://docs.pinkfish.ai/api-reference/endpoint/webhook-trigger
