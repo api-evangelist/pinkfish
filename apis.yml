@@ -87,6 +87,8 @@ apis:
   - type: Authentication
     url: authentication/pinkfish-authentication.yml
 common:
+- type: Overlay
+  url: overlays/pinkfish-triggers-overlay.yaml
 - type: Website
   url: https://pinkfish.ai
 - type: DeveloperPortal
