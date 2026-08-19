@@ -1,0 +1,317 @@
+{
+  "item": [
+    {
+      "id": "f3341a77-a8ba-4f8a-a8e8-ed6d27104eec",
+      "name": "Runs",
+      "description": {
+        "content": "Poll run status and retrieve results",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cfcd1aa5-29b0-48ef-a205-53acd7a61548",
+          "name": "Get workflow run status",
+          "request": {
+            "name": "Get workflow run status",
+            "description": {
+              "content": "Returns the current status of a workflow run. Poll every 2-5 seconds until a terminal status (COMPLETE, FAILED, TIMEOUT). PAUSED is not terminal — keep polling. Modeled from the documented Async Polling guide.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ext",
+                "webhook",
+                ":apiKey",
+                "runs",
+                ":automationId",
+                ":runId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "automationId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef15a650-8732-4110-b528-5825b030f0d3",
+              "name": "Current run status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "webhook",
+                    ":apiKey",
+                    "runs",
+                    ":automationId",
+                    ":runId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiKey",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "automationId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"automationId\": \"string\",\n  \"runId\": \"string\",\n  \"status\": \"COMPLETE\",\n  \"stepStatus\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"stepInfo\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c7290189-e251-43ec-8716-28ac3bd445ff",
+          "name": "Get workflow run results",
+          "request": {
+            "name": "Get workflow run results",
+            "description": {
+              "content": "Retrieves the full results of a completed workflow run, including per-step results and signed resultUrls. Modeled from the documented Async Polling guide.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ext",
+                "webhook",
+                ":apiKey",
+                "runs",
+                ":automationId",
+                ":runId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "automationId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7eed3117-178e-4c13-817f-d0c93a91127e",
+              "name": "Full workflow run results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "webhook",
+                    ":apiKey",
+                    "runs",
+                    ":automationId",
+                    ":runId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiKey",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "automationId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"automationId\": \"string\",\n  \"automationVersion\": 8445,\n  \"automationName\": \"string\",\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"results\": [\n    {\n      \"stepIndex\": 7308,\n      \"stepVersion\": 103,\n      \"result\": {},\n      \"resultUrls\": {},\n      \"exitCode\": 6741,\n      \"duration\": 5584\n    },\n    {\n      \"stepIndex\": 5285,\n      \"stepVersion\": 8952,\n      \"result\": {},\n      \"resultUrls\": {},\n      \"exitCode\": 1297,\n      \"duration\": 9860\n    }\n  ],\n  \"started\": \"1988-07-09T08:27:24.403Z\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://triggers.app.pinkfish.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b1ca6d72-11b7-4312-a978-a870af10a9a5",
+    "name": "AI Workflow Runs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for triggering and managing AI-powered Pinkfish workflows. Trigger endpoints execute published Pinkfish workflows (automations) synchronously or asynchronously, and polling endpoints retrieve run status and results.\n\nContact Support:\n Name: Pinkfish",
+      "type": "text/plain"
+    }
+  }
+}

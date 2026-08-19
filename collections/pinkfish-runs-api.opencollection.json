@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AI Workflow Runs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get workflow run status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://triggers.app.pinkfish.ai/ext/webhook/:apiKey/runs/:automationId/:runId/status",
+            "params": [
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "automationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the current status of a workflow run. Poll every 2-5 seconds until a terminal status (COMPLETE, FAILED, TIMEOUT). PAUSED is not terminal — keep polling. Modeled from the documented Async Polling guide."
+        },
+        {
+          "info": {
+            "name": "Get workflow run results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://triggers.app.pinkfish.ai/ext/webhook/:apiKey/runs/:automationId/:runId/results",
+            "params": [
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "automationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the full results of a completed workflow run, including per-step results and signed resultUrls. Modeled from the documented Async Polling guide."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

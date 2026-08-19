@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "AI Workflow Runs Triggers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-KEY",
+      "value": "{{X-API-KEY}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Triggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger a workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://triggers.app.pinkfish.ai/ext/triggers/:triggerId",
+            "headers": [
+              {
+                "name": "x-api-wait",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "triggerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the trigger"
+              },
+              {
+                "name": "myvar",
+                "value": "",
+                "type": "query",
+                "description": "Optional query parameter for the trigger"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a workflow using its associated trigger. Asynchronous by default (returns null body, run id in X-Pf-Run-Id header). Set `x-api-wait: true` for synchronous execution (waits up to 60 seconds)."
+        },
+        {
+          "info": {
+            "name": "Trigger a workflow via webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://triggers.app.pinkfish.ai/ext/webhook/:apiKey/triggers/:triggerId",
+            "headers": [
+              {
+                "name": "x-api-wait",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "apiKey",
+                "value": "",
+                "type": "path",
+                "description": "The API key, embedded in the URL path for authentication"
+              },
+              {
+                "name": "triggerId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the trigger"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a workflow using a webhook URL with the API key embedded in the path. Designed for third-party services that cannot set custom headers (Slack, Discord, Linear, Zoom, etc.). JSON and form-encoded data only; file attachments are not supported."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

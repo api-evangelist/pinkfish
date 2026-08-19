@@ -1,0 +1,748 @@
+{
+  "item": [
+    {
+      "id": "e47144fe-a4c6-4d5c-a194-c0382803d996",
+      "name": "Triggers",
+      "description": {
+        "content": "Execute published workflows via API and webhook triggers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0c7d283-6c5e-4dd1-b0c7-893aaf67e260",
+          "name": "Trigger a workflow",
+          "request": {
+            "name": "Trigger a workflow",
+            "description": {
+              "content": "Executes a workflow using its associated trigger. Asynchronous by default (returns null body, run id in X-Pf-Run-Id header). Set `x-api-wait: true` for synchronous execution (waits up to 60 seconds).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ext",
+                "triggers",
+                ":triggerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "myvar",
+                  "value": "<string>",
+                  "description": "Optional query parameter for the trigger"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "triggerId",
+                  "description": "(Required) The unique identifier of the trigger"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to `true` for synchronous execution (waits up to 60 seconds for results). Set to `false` or omit for asynchronous (fire-and-forget) execution.",
+                "key": "x-api-wait",
+                "value": "false"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b73d5788-4cb0-40d7-8f88-e47b976a76a4",
+              "name": "Workflow triggered successfully. Async mode: body is null (use X-Pf-Run-Id / X-Pf-Automation-Id headers). Sync mode: body contains full workflow results if completed within 60 seconds.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "triggers",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "myvar",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier of the trigger"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to `true` for synchronous execution (waits up to 60 seconds for results). Set to `false` or omit for asynchronous (fire-and-forget) execution.",
+                    "key": "x-api-wait",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "TESTKEY",
+                      "value": "TESTVAR"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Unique identifier for this workflow run",
+                  "key": "X-Pf-Run-Id",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The automation/workflow ID",
+                  "key": "X-Pf-Automation-Id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"automationId\": \"string\",\n  \"automationVersion\": 3812,\n  \"automationName\": \"string\",\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"results\": [\n    {\n      \"stepIndex\": 4393,\n      \"stepVersion\": 1878,\n      \"result\": {},\n      \"resultUrls\": {},\n      \"exitCode\": 8104,\n      \"duration\": 5463\n    },\n    {\n      \"stepIndex\": 4820,\n      \"stepVersion\": 3502,\n      \"result\": {},\n      \"resultUrls\": {},\n      \"exitCode\": 7410,\n      \"duration\": 2405\n    }\n  ],\n  \"started\": \"1996-02-02T18:50:49.979Z\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01ccbb7d-2b00-401f-9e27-eeb8d3529ae5",
+              "name": "Accepted. Sync request whose workflow was still running when the 60-second wait window closed. Poll statusUrl/resultsUrl.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "triggers",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "myvar",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier of the trigger"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to `true` for synchronous execution (waits up to 60 seconds for results). Set to `false` or omit for asynchronous (fire-and-forget) execution.",
+                    "key": "x-api-wait",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "TESTKEY",
+                      "value": "TESTVAR"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "7764",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"runId\": \"string\",\n  \"automationId\": \"string\",\n  \"status\": \"string\",\n  \"statusUrl\": \"string\",\n  \"resultsUrl\": \"string\",\n  \"retryAfterSeconds\": 8331\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2d27063-b719-4568-a481-e41794801fbb",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "triggers",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "myvar",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier of the trigger"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to `true` for synchronous execution (waits up to 60 seconds for results). Set to `false` or omit for asynchronous (fire-and-forget) execution.",
+                    "key": "x-api-wait",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "TESTKEY",
+                      "value": "TESTVAR"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d148286-10dc-400b-9318-0a1721635766",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "triggers",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "myvar",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier of the trigger"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to `true` for synchronous execution (waits up to 60 seconds for results). Set to `false` or omit for asynchronous (fire-and-forget) execution.",
+                    "key": "x-api-wait",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "TESTKEY",
+                      "value": "TESTVAR"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "192fcf8a-3275-49a3-9300-a34d7509a8ce",
+          "name": "Trigger a workflow via webhook",
+          "request": {
+            "name": "Trigger a workflow via webhook",
+            "description": {
+              "content": "Executes a workflow using a webhook URL with the API key embedded in the path. Designed for third-party services that cannot set custom headers (Slack, Discord, Linear, Zoom, etc.). JSON and form-encoded data only; file attachments are not supported.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ext",
+                "webhook",
+                ":apiKey",
+                "triggers",
+                ":triggerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiKey",
+                  "description": "(Required) The API key, embedded in the URL path for authentication"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "triggerId",
+                  "description": "(Required) The unique identifier of the trigger"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Set to `true` for synchronous execution.",
+                "key": "x-api-wait",
+                "value": "false"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7acb25f4-2756-44be-aa22-05cedfb12f3d",
+              "name": "Workflow triggered successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "webhook",
+                    ":apiKey",
+                    "triggers",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiKey",
+                      "description": "(Required) The API key, embedded in the URL path for authentication"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier of the trigger"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to `true` for synchronous execution.",
+                    "key": "x-api-wait",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-Pf-Run-Id",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-Pf-Automation-Id",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"automationId\": \"string\",\n  \"automationVersion\": 2932,\n  \"automationName\": \"string\",\n  \"id\": \"string\",\n  \"type\": \"string\",\n  \"results\": [\n    {\n      \"stepIndex\": 6101,\n      \"stepVersion\": 2262,\n      \"result\": {},\n      \"resultUrls\": {},\n      \"exitCode\": 4008,\n      \"duration\": 6663\n    },\n    {\n      \"stepIndex\": 2979,\n      \"stepVersion\": 5775,\n      \"result\": {},\n      \"resultUrls\": {},\n      \"exitCode\": 273,\n      \"duration\": 8352\n    }\n  ],\n  \"started\": \"1963-09-30T16:04:23.218Z\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "051cc63a-022e-4b53-9b38-14c1ff79d1e0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "webhook",
+                    ":apiKey",
+                    "triggers",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiKey",
+                      "description": "(Required) The API key, embedded in the URL path for authentication"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier of the trigger"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to `true` for synchronous execution.",
+                    "key": "x-api-wait",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e534b9b1-b5bc-484f-8ed7-316fe137cccc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ext",
+                    "webhook",
+                    ":apiKey",
+                    "triggers",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiKey",
+                      "description": "(Required) The API key, embedded in the URL path for authentication"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier of the trigger"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Set to `true` for synchronous execution.",
+                    "key": "x-api-wait",
+                    "value": "false"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://triggers.app.pinkfish.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-KEY"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d8b6cf0-6dd9-4585-8d3c-142106fa655d",
+    "name": "AI Workflow Runs Triggers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for triggering and managing AI-powered Pinkfish workflows. Trigger endpoints execute published Pinkfish workflows (automations) synchronously or asynchronously, and polling endpoints retrieve run status and results.\n\nContact Support:\n Name: Pinkfish",
+      "type": "text/plain"
+    }
+  }
+}
