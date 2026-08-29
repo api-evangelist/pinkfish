@@ -13,6 +13,18 @@ description: >-
   asynchronous execution, webhook triggers, and run polling) and through the
   embedded Pinkfish Sidekick MCP server. Pinkfish was surfaced as a portfolio
   company of Norwest Venture Partners and was acquired by Genesys.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
