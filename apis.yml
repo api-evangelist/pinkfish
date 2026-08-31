@@ -110,6 +110,11 @@ apis:
   - type: Authentication
     url: authentication/pinkfish-authentication.yml
 common:
+- type: ParentCompany
+  url: https://apis.io/providers/genesys/
+  name: Genesys
+  x-relationship: acquired
+  x-evidence: "Pinkfish was surfaced as a portfolio company of Norwest Venture Partners and was acquired by Genesys."
 - type: Overlay
   url: overlays/pinkfish-triggers-overlay.yaml
 - type: Website
