@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: AI Workflow Runs API
   description: API for triggering and managing AI-powered Pinkfish workflows. Trigger endpoints execute published Pinkfish workflows (automations) synchronously or asynchronously, and polling endpoints retrieve run status and results.
@@ -77,8 +77,9 @@ paths:
 components:
   schemas:
     RunResult:
-      type: object
-      nullable: true
+      type:
+      - object
+      - 'null'
       properties:
         automationId:
           type: string
