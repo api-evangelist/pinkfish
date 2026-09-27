@@ -76,6 +76,30 @@ paths:
                 $ref: '#/components/schemas/RunResult'
 components:
   schemas:
+    RunStatus:
+      type: object
+      properties:
+        automationId:
+          type: string
+        runId:
+          type: string
+        status:
+          type: string
+          enum:
+          - PENDING
+          - RUNNING
+          - PAUSED
+          - COMPLETE
+          - FAILED
+          - TIMEOUT
+        stepStatus:
+          type: object
+          additionalProperties:
+            type: string
+        stepInfo:
+          type: object
+          additionalProperties:
+            type: object
     RunResult:
       type:
       - object
@@ -114,30 +138,6 @@ components:
           format: date-time
         status:
           type: string
-    RunStatus:
-      type: object
-      properties:
-        automationId:
-          type: string
-        runId:
-          type: string
-        status:
-          type: string
-          enum:
-          - PENDING
-          - RUNNING
-          - PAUSED
-          - COMPLETE
-          - FAILED
-          - TIMEOUT
-        stepStatus:
-          type: object
-          additionalProperties:
-            type: string
-        stepInfo:
-          type: object
-          additionalProperties:
-            type: object
   securitySchemes:
     apiKeyAuth:
       type: apiKey

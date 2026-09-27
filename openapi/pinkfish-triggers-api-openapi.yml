@@ -177,16 +177,21 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
+    RunHandle:
       type: object
       properties:
-        error:
+        runId:
           type: string
-        message:
+        automationId:
           type: string
-      required:
-      - error
-      - message
+        status:
+          type: string
+        statusUrl:
+          type: string
+        resultsUrl:
+          type: string
+        retryAfterSeconds:
+          type: integer
     RunResult:
       type:
       - object
@@ -225,21 +230,16 @@ components:
           format: date-time
         status:
           type: string
-    RunHandle:
+    Error:
       type: object
       properties:
-        runId:
+        error:
           type: string
-        automationId:
+        message:
           type: string
-        status:
-          type: string
-        statusUrl:
-          type: string
-        resultsUrl:
-          type: string
-        retryAfterSeconds:
-          type: integer
+      required:
+      - error
+      - message
   securitySchemes:
     apiKeyAuth:
       type: apiKey
