@@ -192,6 +192,16 @@ components:
           type: string
         retryAfterSeconds:
           type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+      required:
+      - error
+      - message
     RunResult:
       type:
       - object
@@ -230,16 +240,6 @@ components:
           format: date-time
         status:
           type: string
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-      required:
-      - error
-      - message
   securitySchemes:
     apiKeyAuth:
       type: apiKey
