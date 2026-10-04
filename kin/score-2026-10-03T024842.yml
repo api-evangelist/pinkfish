@@ -1,24 +1,22 @@
-# Kin Score artifact — pinkfish — 2026-08-27T140727
+# Kin Score artifact — pinkfish — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: pinkfish
-  schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T140727
-  composite: 27.7
-  band: thin
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 22.5
+  band: emerging
   facets:
-    discoverability: 75.9
-    contract_quality: 34.9
-    governance: 16.7
+    discoverability: 71.7
+    contract_quality: 24.8
+    contract_governance: 4.5
     operational_transparency: 10.5
     developer_ergonomics: 39.9
-    commercial_clarity: 0.0
-    contract_governance: 16.7
     access_clarity: 0.0
   agent_readiness:
-    score: 41.8
+    score: 41.3
     band: agent-ready
     band_gated_from: agent-native
     dimensions:
@@ -31,7 +29,7 @@ kin_score:
       error_semantics: verified
       openapi_examples: verified
       rate_limit_signal: verified
-      event_surface_described: true
+      event_surface_described: unknown
       agent_skills: derived
       well_known_catalog: false
       consent_identity: false
@@ -41,6 +39,12 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 15.5
+    matched_via: fallback
   provenance:
     mcp: first-party
     skills: derived
@@ -48,6 +52,6 @@ kin_score:
     conformance: derived
     contracts:
       total: 2
-      derived: 1
-      coverage: 50.0
+      derived: 0
+      coverage: 0.0
       callable: 100.0
