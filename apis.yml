@@ -111,6 +111,8 @@ apis:
   - type: Authentication
     url: authentication/pinkfish-authentication.yml
 common:
+- type: Plans
+  url: plans/pinkfish-plans-pricing.yml
 - type: ParentCompany
   url: https://apis.io/providers/genesys/
   name: Genesys
