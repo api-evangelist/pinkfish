@@ -1,0 +1,55 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.pinkfish.ai/pricing
+sources:
+- https://www.pinkfish.ai/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+  managed_tier: PRO
+published: true
+note: Pro and Team prices shown as billed annually; credits included per tier with usage pricing beyond.
+plan_count: 4
+currency: USD
+plans:
+- name: STARTER
+  price_text: $0
+  price: 0
+  currency: USD
+  period: month
+  included_quota: 1,000 Free Credits (Every Week); Single User; 5 Custom Integrations; 1 Login
+- name: PRO
+  price_text: $20/month
+  price: 20
+  currency: USD
+  period: month
+  included_quota: Included Free Tier 60,000 Credits/Year; Single User; 10 Custom Integrations; 5 Logins
+  overage: Usage Pricing
+- name: TEAM
+  price_text: $99/month
+  price: 99
+  currency: USD
+  period: month
+  included_quota: Included Free Tier 300,000 Credits/Year; Up to 10 Users; 100+ Custom Integrations; 10
+    Logins
+  overage: Usage Pricing
+- name: ENTERPRISE
+  price_text: Custom
+  period: none
+  included_quota: Custom credits; Unlimited Users
+  overage: Custom
+rate_limit_statements:
+- (5 Concurrent Runs)
+- (20 Concurrent Runs)
+- (200+ Concurrent Runs)
+- (1 Concurrent Session)
+- (2 Concurrent Sessions)
+- (5+ Concurrent Sessions)
