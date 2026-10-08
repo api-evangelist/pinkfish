@@ -53,3 +53,40 @@ rate_limit_statements:
 - (1 Concurrent Session)
 - (2 Concurrent Sessions)
 - (5+ Concurrent Sessions)
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - hybrid
+  - metered
+  units: []
+  plans:
+  - name: STARTER
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: PRO
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: TEAM
+    access: other
+    model: hybrid
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: ENTERPRISE
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
