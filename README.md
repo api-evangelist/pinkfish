@@ -64,6 +64,125 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Pinkfish is a company surfaced as a portfolio company of norwest-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting the enrichment pipeline.
+Pinkfish is an enterprise agentic AI and business orchestration platform that runs multi-step workflows across an organization's stack, combining AI agents with real system integrations, permissions, and auditability for critical operations. The platform pairs a natural-language "Coworker" and visual agentic workflow editor with domain-specific Agents, a Guardian monitoring and self-healing layer, and a library of 1,500+ ready-to-deploy MCP tools spanning 500+ enterprise integrations (Salesforce, Slack, Stripe, Zendesk, Jira, and more). Published workflows are exposed programmatically through the Triggers API (an API-key authenticated HTTP surface supporting synchronous and asynchronous execution, webhook triggers, and run polling) and through the embedded Pinkfish Sidekick MCP server. Pinkfish was surfaced as a portfolio company of Norwest Venture Partners and was acquired by Genesys.
 
-Backed by: norwest-venture-partners — https://pinkfish.ai
+**Areas:** Company · Artificial Intelligence · AI Agents · Agentic Workflows · Automation · Orchestration · MCP · Integration · Enterprise · No-Code
+
+## Pinkfish on APIs.io
+
+Everything profiled for Pinkfish is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pinkfish/](https://apis.io/providers/pinkfish/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [Pinkfish Runs API](https://apis.io/apis/pinkfish/pinkfish-runs-api/) — Poll run status and retrieve results
+- [Pinkfish Triggers API](https://apis.io/apis/pinkfish/pinkfish-triggers-api/) — Execute published workflows via API and webhook triggers
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [pinkfish-mcp.yml](https://apis.io/servers/pinkfish/pinkfish-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Pinkfish Agentic Access](https://apis.io/agentic-access/pinkfish/pinkfish-agentic-access/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [AI Workflow Runs API](https://apis.io/collections/pinkfish/open-pinkfish-runs-api/)
+- [AI Workflow Runs Triggers API](https://apis.io/collections/pinkfish/open-pinkfish-triggers-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Pinkfish Triggers Overlay](https://apis.io/overlays/pinkfish/pinkfish-triggers-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Pinkfish Authentication](https://apis.io/security/pinkfish/pinkfish-authentication/)
+- [Pinkfish Domain Security](https://apis.io/security/pinkfish/pinkfish-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Pinkfish Plans Pricing](https://apis.io/plans/pinkfish/pinkfish-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://pinkfish.ai)
+- [Documentation](https://docs.pinkfish.ai)
+- [API reference](https://docs.pinkfish.ai/api-reference/introduction)
+- [Pricing](https://www.pinkfish.ai/pricing)
+- [Sign up](https://app.pinkfish.ai)
+- [Changelog](https://www.pinkfish.ai/changelog)
+- [Blog](https://www.pinkfish.ai/blog)
+- [Terms of service](https://www.pinkfish.ai/terms-of-service)
+- [Privacy policy](https://www.pinkfish.ai/privacy-policy)
+- [GitHub](https://github.com/pinkfish-ai)
+
+## API Evangelist rating
+
+**Kin Score 28.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 24.8 |
+| Contract governance | 4.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 39.9 |
+| Access clarity | 31.6 |
+
+**Agent readiness 41.3** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | verified |
+| Event Surface Described | unknown |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 15.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pinkfish/](https://apis.io/providers/pinkfish/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pinkfish: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pinkfish/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
